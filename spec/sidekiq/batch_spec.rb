@@ -7,6 +7,10 @@ class TestWorker
 end
 
 describe Sidekiq::Batch do
+  before do
+    Sidekiq.redis do |r| r.flushdb end
+  end
+  
   it 'has a version number' do
     expect(Sidekiq::Batch::VERSION).not_to be nil
   end
